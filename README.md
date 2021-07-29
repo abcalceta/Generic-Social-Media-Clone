@@ -1,24 +1,7 @@
-# README
+# Frances' Generic Social Media Clone
+## for Ruby on Rails Practice
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+I used Rails 6.
+To get it going, run `bundle install`, then `rails db:migrate`, then if you want to have sample posts `rails db:seed`.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+##If you wanna see it right now it's on Heroku: https://afternoon-coast-91361.herokuapp.com/
