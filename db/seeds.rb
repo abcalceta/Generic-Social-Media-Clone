@@ -39,8 +39,10 @@ posts = Post.all
 for i in 0..1000
   post = posts[rand(0..posts.size-1)]
   user = users[rand(0..users.size-1)]
-  Favorite.create(
-    user_id: user.id,
-    post_id: post.id,
-  )
+  if not Favorite.find_by(user_id: user, post_id: post)
+    Favorite.create(
+      user_id: user.id,
+      post_id: post.id
+    )
+  end
 end
