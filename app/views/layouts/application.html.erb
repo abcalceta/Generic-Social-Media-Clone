@@ -14,9 +14,11 @@
   <body>
     <%= render "navbar" %>
     <%= render "alerts" %>
-    <div class="container">
-      <%= yield %>
-    </div>
+    <main>
+      <div class="container">
+        <%= yield %>
+      </div>
+    </main>
     <%= render "footer" %>
   </body>
 </html>

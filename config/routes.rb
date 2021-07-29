@@ -4,6 +4,9 @@ Rails.application.routes.draw do
   devise_for :users
   resources :users, only: [:index, :show]
 
+  get "search", to: "posts#search"
+
+
   resources :posts do
     resource :favorite, module: :posts
   end

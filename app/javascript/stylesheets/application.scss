@@ -9,16 +9,18 @@ body{
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background-color: $cotton-candy;
 }
 
 h1{
   font-family: 'Balsamiq Sans', 'cursive';
+  color: $english-violet;
+  size: 1vh;
 }
 
 main {
   padding-top: 60px;
-  padding-bottom: 120px;
-  background-color: rgba(223, 228, 234,1.0);
+  padding-bottom: 60px;
 }
 
 
@@ -27,7 +29,7 @@ footer {
   margin-top: auto;
   padding-top: 10px;
   margin-bottom: 0;
-  background-color: rgba(164, 176, 190,1.0);
+  background-color: $hot-pink;
 }
 
 
@@ -40,4 +42,5 @@ footer {
 }
 .title {
   flex: 200px;
+  padding-left: 20px;
 }

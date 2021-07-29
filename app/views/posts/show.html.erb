@@ -1,15 +1,9 @@
-<p>
-  <strong>Name:</strong>
-  <%= @post.user.email %>
-</p>
-
-<p>
-  <strong>Title:</strong>
+<h1>
   <%= @post.title %>
-</p>
+</h1>
+<h2>by <%= @post.user.nickname %></h2>
 
 <p>
-  <strong>Content:</strong>
   <%= @post.content %>
 </p>
 

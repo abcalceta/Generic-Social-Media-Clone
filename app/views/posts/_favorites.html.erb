@@ -7,5 +7,5 @@
 <% end %>
 
 <% @post.favorites.each do |fav| %>
-  <%= link_to fav.user_id, "" %>
+  <%= link_to fav.user_id, User.find(fav.user_id)%>
 <% end %>

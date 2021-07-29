@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: %i[ show edit update destroy ]
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, except: [:index, :show, :search]
 
   # GET /posts or /posts.json
   def index
@@ -57,6 +57,21 @@ class PostsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+
+  def search
+    if params[:search].blank?
+      @search_results = []
+    else
+      @search_param = params[:search].downcase
+      @search_results = Post.where("title LIKE :search_param OR content LIKE :search_param", search_param: "%#{@search_param}%")
+      @search_results = @search_results .paginate(:page => params[:page], per_page:8)
+    end
+    # redirect_to search_path
+  end
+
+
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
