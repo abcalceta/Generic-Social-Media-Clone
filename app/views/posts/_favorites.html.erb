@@ -6,6 +6,7 @@
   <% end %>
 <% end %>
 
+<h3>This post was favorited by the following users:</h3>
 <% @post.favorites.each do |fav| %>
-  <%= link_to fav.user_id, User.find(fav.user_id)%>
+  <%= link_to image_tag(Faker::Avatar.image(slug: fav.user.email, size: "50x50", format: "jpg", set: "set5")), User.find(fav.user_id)%>
 <% end %>

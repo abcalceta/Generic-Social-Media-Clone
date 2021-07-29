@@ -15,8 +15,25 @@ body{
 h1{
   font-family: 'Balsamiq Sans', 'cursive';
   color: $english-violet;
-  size: 1vh;
 }
+h2{
+  font-family: 'Balsamiq Sans', 'cursive';
+  color: $english-violet;
+}
+h3{
+  font-family: 'Balsamiq Sans', 'cursive';
+  color: $english-violet;
+}
+h4{
+  font-family: 'Balsamiq Sans', 'cursive';
+  color: $english-violet;
+}
+
+a{
+  font-family: 'Balsamiq Sans', 'cursive';
+  color: $oxford-blue;
+}
+
 
 main {
   padding-top: 60px;
@@ -32,6 +49,27 @@ footer {
   background-color: $hot-pink;
 }
 
+footer p{
+  font-family: 'Balsamiq Sans', 'cursive';
+  color: white;
+}
+
+
+.alert{
+  background-color: $hot-pink;
+}
+.alert-primary p {
+  font-family: 'Balsamiq Sans', 'cursive';
+  color: white;
+}
+
+.card{
+  background-color: tint($honeydew, 10%);
+}
+
+.card-footer{
+  background-color: $honeydew;
+}
 
 .picture-and-title{
   display: flex;

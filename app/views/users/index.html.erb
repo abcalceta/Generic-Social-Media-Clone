@@ -1,1 +1,27 @@
 <h1>All Users</h1>
+<div class="row row-cols-1 row-cols-md-4 g-4">
+  <% @users.each do |user| %>
+    <div class="col">
+      <div class="card">
+        <div class="card-body">
+          <div class="picture-and-title">
+            <div class="picture">
+              <img src="<%=Faker::Avatar.image(slug: user.email, size: "50x50", format: "jpg", set: "set5") %>">
+            </div>
+            <div class="title">
+              <h5 class="card-title">
+                <h6 class="card-subtitle mb-2"><%= link_to user.nickname, user%></h6>
+              </h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+<br>
+<div class="row row-cols-1 row-cols-md-4 g-4">
+  <div class="col">
+      <%= will_paginate @users %>
+  </div>
+</div>
