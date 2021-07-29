@@ -1,38 +1,35 @@
-<div class="row row-cols-1 row-cols-md-4 gx-5">
+<div class="row row-cols-1 row-cols-md-4 g-4">
   <% @posts.each do |post| %>
-    <div class="card h-100">
-      <div class="card-body">
-        <div class="container">
-          <div class="row">
-            <div class="col-2">
+    <div class="col">
+      <div class="card">
+        <div class="card-body">
+          <div class="picture-and-title">
+            <div class="picture">
               <img src="<%=Faker::Avatar.image(slug: post.user.email, size: "50x50", format: "jpg", set: "set5") %>">
             </div>
-            <div class="col-10">
+            <div class="title">
               <h5 class="card-title"><%= post.title %></h5>
             </div>
-          <div class="row">
-            <div class="col">
-              <h6 class="card-subtitle mb-2 text-muted"><%= link_to post.user.nickname, post.user%></h6>
-            </div>
           </div>
+          <h6 class="card-subtitle mb-2 text-muted">By <%= link_to post.user.nickname, post.user%></h6>
+          <p class="card-text"><%= post.content[0..50]+"..." %></p>
+          <div class="card-footer">
+            <%= link_to 'Show', post, class:"card-link"%>
+            <% if user_signed_in? && current_user==post.user %>
+              <%= link_to 'Edit', edit_post_path(post), class:"card-link" %>
+              <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' }, class:"card-link"%>
+            <% end %>
           </div>
         </div>
-
-        <p class="card-text"><%= post.content[0..50]+"..." %></p>
-        <%= link_to 'Show', post, class:"card-link"%>
-
-        <% if user_signed_in? && current_user==post.user %>
-          <%= link_to 'Edit', edit_post_path(post), class:"card-link" %>
-          <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' }, class:"card-link"%>
-        <% end %>
-
       </div>
     </div>
   <% end %>
 </div>
 
+  <div class="pagination">
+    <%= will_paginate @posts %>
+  </div>
+  <br>
 
-<div class="pagination">
-  <%= will_paginate @posts %>
+
 </div>
-<br>
