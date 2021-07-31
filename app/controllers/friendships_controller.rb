@@ -4,8 +4,8 @@ class FriendshipsController < ApplicationController
   before_action :set_friendB
 
   def create
-    if not Friendship.where(user_id: @friendA, friend_id: @friendB)?
-      friendship = Friendship.create(friendship_params)
+    if not Friendship.where(user_id: @friendA, friend_id: @friendB)
+      friendship = Friendship.create(:friendship_params)
       respond_to do |format|
         format.html { redirect_to user_path(@friendB), notice: "Friended!" }
         # format.js
