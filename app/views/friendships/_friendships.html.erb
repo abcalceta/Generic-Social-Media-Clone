@@ -1,15 +1,14 @@
 <% if user_signed_in? %>
-
   <% if Friendship.has_friended?(current_user.id, @user.id) %>
     <% if Friendship.has_friended?(@user.id, current_user.id) %>
       <h2 class = "text-muted">You are friends!</h2>
     <% end %>
   <% end %>
-
+<div id = "friendship-button">
   <% if Friendship.has_friended?(current_user.id, @user.id) %>
     <% if Friendship.has_friended?(@user.id, current_user.id) %>
       <button type="button" class="btn btn-light">
-        <%= link_to "Remove Friend", friendship_path(friend_id:@user.id, user_id:current_user.id), method: :delete %>
+        <%= link_to "Remove Friend", friendship_path(friend_id:@user.id, user_id:current_user.id), method: :delete%>
       </button>
     <% else %>
     <button type="button" class="btn btn-light">
@@ -19,46 +18,18 @@
   <% else %>
     <% if Friendship.has_friended?(@user.id, current_user.id) %>
       <button type="button" class="btn btn-light">
-        <%= link_to "Respond to Friend Request", friendship_path(friend_id:@user.id, user_id:current_user.id), method: :post %>
+        <%= link_to "Respond to Friend Request", friendship_path(friend_id:@user.id, user_id:current_user.id), method: :post%>
       </button>
     <% else %>
       <button type="button" class="btn btn-light">
-        <%= link_to "Add Friend", friendship_path(friend_id:@user.id, user_id:current_user.id), method: :post %>
+        <%= link_to "Add Friend", friendship_path(friend_id:@user.id, user_id:current_user.id), method: :post%>
       </button>
     <% end %>
   <% end %>
+</div>
 <% end %>
 <br>
 <br>
 <br>
-<h1>All Friendships:</h1>
-<div class="row row-cols-1 row-cols-md-4 g-4">
-  <% shown = [] %>
-  <% Friendship.where(friend_id: @user.id).each do |f| %>
-    <% friend = User.find(f.user_id) %>
-    <% test_user = friend.id %>
-    <% if Friendship.has_friended?(test_user, @user.id) %>
-      <% if Friendship.has_friended?(@user.id, test_user) %>
-        <% if not shown.include?([@user.id, test_user]) %>
-          <% shown.push([@user.id, test_user]) %>
-          <div class="col">
-            <div class="card">
-              <div class="card-body">
-                <div class="picture-and-title">
-                  <div class="picture">
-                    <img src="<%=Faker::Avatar.image(slug: friend.email, size: "50x50", format: "jpg", set: "set5") %>">
-                  </div>
-                  <div class="title">
-                    <h5 class="card-title">
-                      <h6 class="card-subtitle mb-2"><%= link_to friend.nickname, friend%></h6>
-                    </h5>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        <% end %>
-      <% end %>
-    <% end %>
-  <% end %>
-</div>
+<h1>Friendships:</h1>
+<%= render "friendships/all_friends" %>

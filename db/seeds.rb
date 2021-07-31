@@ -14,13 +14,24 @@ Friendship.destroy_all
 require 'faker'
 
 #generate random users
-for i in 0..10
+for i in 0..15
   User.create(
     email: Faker::Internet.unique.safe_email,
     nickname: Faker::Name.first_name,
     password: "password"
   )
 end
+
+User.create(
+  email: "sample@example.com",
+  nickname: Faker::Name.first_name,
+  password: "123456"
+)
+User.create(
+  email: "sample0@example.com",
+  nickname: Faker::Name.first_name,
+  password: "123456"
+)
 
 # random posts
 users = User.all
@@ -35,6 +46,9 @@ for i in 0..100
   post.save
 end
 
+
+
+
 #random favorites
 posts = Post.all
 for i in 0..1000
@@ -48,9 +62,9 @@ for i in 0..1000
   end
 end
 
-for i in 0..50
+for i in 0..10
   userA = users[rand(0..users.size-1)].id
-  for j in 0..50
+  for j in 0..10
     userB = users[rand(0..users.size-1)].id
     while userA == userB
       userB = users[rand(0..users.size-1)].id

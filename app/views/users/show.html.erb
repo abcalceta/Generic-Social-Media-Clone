@@ -5,9 +5,7 @@
       <img src="<%=Faker::Avatar.image(slug: @user.email, size: "400x400", format: "jpg", set: "set5") %>">
     </div>
     <div class = "col-7">
-      <div id="friendships">
-        <%= render "friendships/friendships" %>
-      </div>
+      <%= render "friendships/friendships" %>
     </div>
   </div>
 </div>
