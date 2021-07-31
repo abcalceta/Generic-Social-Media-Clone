@@ -13,5 +13,8 @@ Rails.application.routes.draw do
 
   resources :about, only: [:index]
 
+  resource :friendship, only: [:destroy, :create]
+  # post "make_friends", to: "friendships#make_friends"
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

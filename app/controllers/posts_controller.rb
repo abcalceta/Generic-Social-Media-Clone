@@ -62,10 +62,11 @@ class PostsController < ApplicationController
   def search
     if params[:search].blank?
       @search_results = []
+      return
     else
       @search_param = params[:search].downcase
       @search_results = Post.where("title LIKE :search_param OR content LIKE :search_param", search_param: "%#{@search_param}%")
-      @search_results = @search_results .paginate(:page => params[:page], per_page:8)
+      @search_results = @search_results.paginate(:page => params[:page], per_page:8)
     end
     # redirect_to search_path
   end

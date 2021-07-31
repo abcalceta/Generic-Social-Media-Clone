@@ -9,6 +9,7 @@
 User.destroy_all
 Post.destroy_all
 Favorite.destroy_all
+Friendship.destroy_all
 
 require 'faker'
 
@@ -44,5 +45,20 @@ for i in 0..1000
       user_id: user.id,
       post_id: post.id
     )
+  end
+end
+
+for i in 0..50
+  userA = users[rand(0..users.size-1)].id
+  for j in 0..50
+    userB = users[rand(0..users.size-1)].id
+    while userA == userB
+      userB = users[rand(0..users.size-1)].id
+    end
+    friendship = Friendship.create(
+      user_id: userA,
+      friend_id: userB
+    )
+    puts i, friendship.user_id, j, friendship.friend_id
   end
 end

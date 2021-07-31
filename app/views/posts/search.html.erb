@@ -1,35 +1,40 @@
 
-<h1>Results for "<%=@search_param %>"</h1>
-<div class="row row-cols-1 row-cols-md-4 g-4">
-  <% @search_results.each do |post| %>
-    <div class="col">
-      <div class="card">
-        <div class="card-body">
-          <div class="picture-and-title">
-            <div class="picture">
-              <img src="<%=Faker::Avatar.image(slug: post.user.email, size: "50x50", format: "jpg", set: "set5") %>">
+<% if @search_results.blank? %>
+  <h1>No Results for "<%=@search_param %>"</h1>
+  <h2 class = "text-muted">Search for something!</h2>
+<% else %>
+  <h1>Results for "<%=@search_param %>"</h1>
+  <div class="row row-cols-1 row-cols-md-4 g-4">
+    <% @search_results.each do |post| %>
+      <div class="col">
+        <div class="card">
+          <div class="card-body">
+            <div class="picture-and-title">
+              <div class="picture">
+                <img src="<%=Faker::Avatar.image(slug: post.user.email, size: "50x50", format: "jpg", set: "set5") %>">
+              </div>
+              <div class="title">
+                <h5 class="card-title"><%= post.title %></h5>
+              </div>
             </div>
-            <div class="title">
-              <h5 class="card-title"><%= post.title %></h5>
+            <h6 class="card-subtitle mb-2 text-muted">By <%= link_to post.user.nickname, post.user%></h6>
+            <p class="card-text"><%= post.content[0..50]+"..." %></p>
+            <div class="card-footer">
+              <%= link_to 'Show', post, class:"card-link"%>
+              <% if user_signed_in? && current_user==post.user %>
+                <%= link_to 'Edit', edit_post_path(post), class:"card-link" %>
+                <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' }, class:"card-link"%>
+              <% end %>
             </div>
-          </div>
-          <h6 class="card-subtitle mb-2 text-muted">By <%= link_to post.user.nickname, post.user%></h6>
-          <p class="card-text"><%= post.content[0..50]+"..." %></p>
-          <div class="card-footer">
-            <%= link_to 'Show', post, class:"card-link"%>
-            <% if user_signed_in? && current_user==post.user %>
-              <%= link_to 'Edit', edit_post_path(post), class:"card-link" %>
-              <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' }, class:"card-link"%>
-            <% end %>
           </div>
         </div>
       </div>
-    </div>
-  <% end %>
-</div>
-<br>
-<div class="row row-cols-1 row-cols-md-4 g-4">
-  <div class="col">
-      <%= will_paginate @search_results %>
+    <% end %>
   </div>
-</div>
+  <br>
+  <div class="row row-cols-1 row-cols-md-4 g-4">
+    <div class="col">
+        <%= will_paginate @search_results %>
+    </div>
+  </div>
+<% end %>

@@ -3,6 +3,7 @@ class Posts::FavoritesController < ApplicationController
   before_action :set_post
 
   def create
+    #check if it exists
     favorite = @post.favorites.where(user_id: current_user.id)
     if not favorite.present?
       favorite = @post.favorites.new(favorite_params)
